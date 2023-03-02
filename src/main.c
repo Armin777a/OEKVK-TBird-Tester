@@ -23,14 +23,19 @@ uint8_t button2 = 0;        // center button
 uint8_t button3 = 0;        // 2nd left most button
 uint8_t button4 = 0;        // left most button
 
+uint8_t sevSegWorking = 0;  // 7 segment display
+
+
 
 
 // ==================== Global variables ====================
+
 // For the leds and buttons
 uint8_t leds = 0xFF;
 uint8_t buttonInput = 0;
 
-
+// For the 7 segment display
+uint16_t sevenSeg = 8888;
 
 
 
@@ -57,13 +62,24 @@ int main(void) {
 
 // ==================== Interrupts ====================
 
+// Timer 0 interrupt routine
+ISR(TIMER0_OVF_vect) {
+    // 7 segment display
+    //SevsegOut(sevenSeg);
+}
+
 // Timer 1 interrupt routine
 ISR(TIMER1_COMPA_vect) {
     // Button tester function
     ButtonTester();
+    
 }
 
-
+// Timer 2 interrupt routine
+ISR(TIMER2_OVF_vect) {
+    // 7 segment display
+    SevsegOut(sevenSeg);
+}
 
 
 

@@ -19,7 +19,7 @@ void InitPorts() {
 
 // Timer initialization
 void InitTimer() {
-	TCCR2 = (0<<WGM21) | (0<<WGM20) | (1<<CS22) | (0<<CS21) | (0<<CS20);
+	TCCR2 = (0<<WGM21) | (0<<WGM20) | (1<<CS22) | (1<<CS21) | (0<<CS20);
 	TIMSK |= (0<<OCIE2) | (1<<TOIE2);
 	
 	
@@ -28,7 +28,7 @@ void InitTimer() {
 	TCCR1A = (0<<WGM11) | (0<<WGM10);
 	TCCR1B = (0<<WGM13) | (1<<WGM12) | (1<<CS12) | (0<<CS11) | (0<<CS10);
 	TIMSK |= (1<<OCIE1A);
-	OCR1A = 62500-1;
+	OCR1A = 6250-1;
 
 	sei();
 }

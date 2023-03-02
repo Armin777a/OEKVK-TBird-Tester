@@ -11,8 +11,6 @@
 
 
 #include <avr/io.h>
-#define F_CPU 16000000
-#include <util/delay.h>
 
 
 #define PORT_LCD_RS			PORTF		// LCD RS PORT
@@ -87,19 +85,19 @@
 // LCD init
 void LCD_Initialization();
 
-// Adat írás
+// Adat ï¿½rï¿½s
 void LCD_SendData(uint8_t data);
 
-// Parancs írás
+// Parancs ï¿½rï¿½s
 void LCD_SendInstruction(uint8_t cmd);
 
 // E 0__|1|__0
 void LCD_Clock();
 
-// String küldés
+// String kï¿½ldï¿½s
 void LCD_SendString(char* p);
 
-// String küldés különböz? sor-ra
+// String kï¿½ldï¿½s kï¿½lï¿½nbï¿½z? sor-ra
 void LCD_SendStringToLine(char* p, uint8_t line);
 
 uint8_t LCD_GetLineAddres(int row);

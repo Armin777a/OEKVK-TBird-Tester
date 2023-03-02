@@ -15,11 +15,13 @@ void SaveButtonWorking(uint8_t pressedButton);
 
 
 // ==================== Testing variables ====================
-uint8_t button0 = 0;
-uint8_t button1 = 0;
-uint8_t button2 = 0;
-uint8_t button3 = 0;
-uint8_t button4 = 0;
+uint8_t boardLeds = 0;      // 0-7 leds
+
+uint8_t button0 = 0;        // right most button
+uint8_t button1 = 0;        // 2nd right most button
+uint8_t button2 = 0;        // center button
+uint8_t button3 = 0;        // 2nd left most button
+uint8_t button4 = 0;        // left most button
 
 
 
@@ -66,11 +68,13 @@ ISR(TIMER1_COMPA_vect) {
 
 
 // ==================== Button Testing Functions ====================
+
+// Blink the leds if a button is pressed
 void ButtonTester() {
     buttonInput = ButtonManager();
 
     if (buttonInput) {
-        
+        SaveButtonWorking(buttonInput);     
         leds ^= 0xFF;
     } else {
         leds = 0xFF;
@@ -78,7 +82,7 @@ void ButtonTester() {
     LedOut(leds);
 }
 
-// Set the 
+// Saves the pressed button
 void SaveButtonWorking(uint8_t pressedButton) {
     switch (pressedButton)
     {

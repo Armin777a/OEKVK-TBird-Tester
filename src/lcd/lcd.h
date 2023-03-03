@@ -11,7 +11,7 @@
 
 
 #include <avr/io.h>
-
+#include <util/delay.h>
 
 #define PORT_LCD_RS			PORTF		// LCD RS PORT
 #define DDR_LCD_RS			DDRF		// LCD RS DDR

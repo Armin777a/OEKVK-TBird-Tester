@@ -55,6 +55,9 @@ uint8_t matrixPressed = 0;
 uint8_t rgbled = 0;
 uint8_t rgbCounter = 0;
 
+// For the UART
+uint8_t uartCounter = 0;
+char uartToSend = '0';
 // ==================== Main Code ====================
 
 // Main function
@@ -66,6 +69,7 @@ int main(void) {
     ADC_Init(0x00, 0x07);
     ADC_EnableInterrupts();
     LCD_Initialization();
+    UsartInit(MYUBRR);
 
     // Set all the leds to on
     LedOut(leds);
@@ -124,6 +128,19 @@ ISR(TIMER1_COMPA_vect) {
             break;
         default:
             break;
+        }
+
+
+        // UART send OK message
+        UsartClearLine();
+        UsartTransmitString("\rOK");
+        uartToSend = uartCounter + '0';
+        UsartTransmitString(&uartToSend);
+        UsartTransmitString("\r");
+        
+        uartCounter++;
+        if (uartCounter >= 10) {
+            uartCounter = 0;
         }
 
     } else {

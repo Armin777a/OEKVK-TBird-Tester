@@ -106,6 +106,8 @@ ISR(TIMER0_OVF_vect) {
 
 // Timer 1 interrupt routine
 ISR(TIMER1_COMPA_vect) {
+    sei();
+
     // Button tester function
     ButtonTester();
     
@@ -137,7 +139,7 @@ ISR(TIMER1_COMPA_vect) {
         uartToSend = uartCounter + '0';
         UsartTransmitString(&uartToSend);
         UsartTransmitString("\r");
-        
+
         uartCounter++;
         if (uartCounter >= 10) {
             uartCounter = 0;

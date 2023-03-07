@@ -134,16 +134,7 @@ ISR(TIMER1_COMPA_vect) {
 
 
         // UART send OK message
-        UsartClearLine();
-        UsartTransmitString("\rOK");
-        uartToSend = uartCounter + '0';
-        UsartTransmitString(&uartToSend);
-        UsartTransmitString("\r");
-
-        uartCounter++;
-        if (uartCounter >= 10) {
-            uartCounter = 0;
-        }
+        UsartTransmitString("\nOK");
 
     } else {
         rgbCounter++;
